@@ -34,7 +34,6 @@ REFERERS = load_referers(JSON_FILE)
 
 class Referer(object):
     def __init__(self, ref_url, curr_url=None, referers=REFERERS):
-        self.known = False
         self.referer = None
         self.medium = 'unknown'
         self.search_parameter = None
@@ -62,6 +61,7 @@ class Referer(object):
             referer = self._lookup_referer(ref_host, ref_uri.path, False)
             if not referer:
                 self.medium = 'unknown'
+                self.known = False
                 return
 
         self.referer = referer['name']
